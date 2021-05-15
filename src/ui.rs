@@ -606,7 +606,7 @@ impl Ui {
         .unwrap();
 
         for character in crate::text::Font::ascii_character_list() {
-            font.cache_glyph(character, 13);
+            font.cache_glyph(character, 16);
         }
 
         atlas

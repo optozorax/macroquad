@@ -268,12 +268,16 @@ impl Painter {
             let glyph = self.font_atlas.borrow().get(font_data.sprite).unwrap();
             let left_coord = font_data.offset_x as f32;
             let top_coord = -glyph.rect.h - font_data.offset_y as f32;
-            let dest = Rect::new(
+            let mut dest = Rect::new(
                 left_coord + position.x,
                 top_coord + position.y,
                 glyph.rect.w,
                 glyph.rect.h,
             );
+            // For unknown reason, ui is sometimes offsetted by 0.5px on Y axis, which brokes rendering for ProggyClean font
+            if dest.y.floor() > 0.4 {
+                dest.y = dest.y.trunc();
+            }
             if self
                 .clipping_zone
                 .map_or(false, |clip| !clip.overlaps(&dest))

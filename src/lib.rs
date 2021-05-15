@@ -594,6 +594,7 @@ impl Window {
             conf::Conf {
                 sample_count: 4,
                 window_title: label.to_string(),
+                high_dpi: true,
                 ..Default::default()
             },
             future,

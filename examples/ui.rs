@@ -245,6 +245,36 @@ async fn main() {
             None => {}
         };
 
+        let text = "aoeuAOEU_0123!-";
+        let y2 = 30.0;
+
+        draw_text_ex(
+            text,
+            1.0,
+            20.0,
+            TextParams {
+                color: BLACK,
+                font_size: 16,
+                ..Default::default()
+            }
+        );
+
+        let x_right = screen_width()-120.0;
+
+        draw_text_ex(
+            text,
+            x_right,
+            20.0,
+            TextParams {
+                color: BLACK,
+                font_size: 16,
+                ..Default::default()
+            }
+        );
+
+        root_ui().label(vec2(1.0, y2), text);
+        root_ui().label(vec2(x_right, y2), text);
+
         next_frame().await;
     }
 }
