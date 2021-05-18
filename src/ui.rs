@@ -130,8 +130,8 @@ impl Window {
                 Rect::new(
                     position.x + window_margin.left,
                     position.y + title_height + window_margin.top,
-                    size.x - window_margin.left - window_margin.right,
-                    size.y - title_height - window_margin.top - window_margin.bottom,
+                    size.x,
+                    size.y,
                 ),
                 margin,
             ),
@@ -154,8 +154,8 @@ impl Window {
         Rect::new(
             self.position.x,
             self.position.y + self.title_height,
-            self.size.x - self.vertical_scroll_bar_width,
-            self.size.y - self.title_height,
+            self.size.x,
+            self.size.y,
         )
     }
 
@@ -696,8 +696,8 @@ impl Ui {
         self.active_window = Some(id);
 
         let focused = self.is_focused(id);
-        let margin = self.skin_stack.top().margin;
-        let margin_window = self.skin_stack.top().window_style.border_margin();
+        let margin = 0.0; //self.skin_stack.top().margin;
+        let margin_window = RectOffset::new(0.0, 0.0, 0.0, 0.0); //self.skin_stack.top().window_style.border_margin();
 
         let title_height = if titlebar {
             self.skin_stack.top().title_height

@@ -275,9 +275,8 @@ impl Painter {
                 glyph.rect.h,
             );
             // For unknown reason, ui is sometimes offsetted by 0.5px on Y axis, which brokes rendering for ProggyClean font
-            if dest.y.floor() > 0.4 {
-                dest.y = dest.y.trunc();
-            }
+            dest.x = dest.x.trunc();
+            dest.y = dest.y.trunc();
             if self
                 .clipping_zone
                 .map_or(false, |clip| !clip.overlaps(&dest))

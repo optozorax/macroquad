@@ -69,14 +69,12 @@ impl StyleBuilder {
 
     pub fn margin(self, margin: RectOffset) -> StyleBuilder {
         StyleBuilder {
-            margin: Some(margin),
             ..self
         }
     }
 
     pub fn background_margin(self, margin: RectOffset) -> StyleBuilder {
         StyleBuilder {
-            background_margin: Some(margin),
             ..self
         }
     }
@@ -316,12 +314,10 @@ impl Skin {
     pub(crate) fn new(atlas: Rc<RefCell<Atlas>>, default_font: Rc<RefCell<FontInternal>>) -> Self {
         Skin {
             label_style: Style {
-                margin: Some(RectOffset::new(2., 2., 2., 2.)),
                 text_color: Color::from_rgba(0, 0, 0, 255),
                 ..Style::default(default_font.clone())
             },
             button_style: Style {
-                margin: Some(RectOffset::new(2., 2., 2., 2.)),
                 color: Color::from_rgba(204, 204, 204, 235),
                 color_clicked: Color::from_rgba(187, 187, 187, 255),
                 color_hovered: Color::from_rgba(170, 170, 170, 235),
@@ -329,7 +325,6 @@ impl Skin {
                 ..Style::default(default_font.clone())
             },
             tabbar_style: Style {
-                margin: Some(RectOffset::new(2., 2., 2., 2.)),
                 color: Color::from_rgba(204, 204, 204, 235),
                 color_clicked: Color::from_rgba(187, 187, 187, 255),
                 color_hovered: Color::from_rgba(170, 170, 170, 235),
@@ -338,7 +333,7 @@ impl Skin {
                 ..Style::default(default_font.clone())
             },
             window_style: StyleBuilder::new(default_font.clone(), atlas.clone())
-                .background_margin(RectOffset::new(1., 1., 1., 1.))
+                .background_margin(RectOffset::new(0., 0., 0., 0.))
                 .color_inactive(Color::from_rgba(238, 238, 238, 128))
                 .text_color(Color::from_rgba(0, 0, 0, 255))
                 .background(Image {
@@ -392,7 +387,7 @@ impl Skin {
                 ..Style::default(default_font.clone())
             },
 
-            margin: 2.0,
+            margin: 0.0,
             title_height: 14.0,
             scroll_width: 10.0,
             scroll_multiplier: 3.,
