@@ -174,6 +174,8 @@ impl DrawList {
         ];
         let indices: [u16; 6] = [0, 1, 2, 0, 2, 3];
 
+        eprintln!("ui:   vetrices: {:?}", vertices);
+
         let indices_offset = self.vertices.len() as u16;
         self.vertices.extend_from_slice(&vertices[..]);
         self.indices

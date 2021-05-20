@@ -90,6 +90,8 @@ impl Atlas {
     }
 
     pub fn get_uv_rect(&self, key: u64) -> Option<Rect> {
+        self.texture.get_texture_data().export_png(&format!("img/uv_{}.png", miniquad::date::now()));
+        dbg!("save");
         self.get(key).map(|sprite| {
             let w = self.texture.width();
             let h = self.texture.height();

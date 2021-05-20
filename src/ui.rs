@@ -1253,7 +1253,7 @@ pub(crate) mod ui_context {
             let font_texture: Texture2D = ui.atlas.borrow_mut().texture(ctx);
             quad_gl.texture(Some(font_texture));
 
-            gl_use_material(*material);
+            // gl_use_material(*material);
 
             for draw_command in &ui_draw_list {
                 if let Some(texture) = draw_command.texture {
@@ -1269,6 +1269,9 @@ pub(crate) mod ui_context {
                 );
                 quad_gl.draw_mode(DrawMode::Triangles);
                 quad_gl.geometry(&draw_command.vertices, &draw_command.indices);
+
+                font_texture.get_texture_data().export_png(&format!("img/uv_{}.png", miniquad::date::now()));
+                dbg!(&draw_command.vertices);
             }
             quad_gl.texture(None);
 
